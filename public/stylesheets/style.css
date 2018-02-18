@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+table tr td{
+	padding: 10px;
+	background-color: #efefef;
+}
+table tr th{
+	background-color: #ccc;
+	padding: 10px;
+}

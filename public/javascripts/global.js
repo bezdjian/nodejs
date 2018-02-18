@@ -94,7 +94,7 @@ function addUser(event){
 				alert("ERROR from posting new user: " + response.msg);
 			}
 		}).fail(function(res){
-			alert("FAIL: " + res.responseText)
+			console.error("FAIL: " + res.responseText)
 		});
 	}else{
 		//if errorCount more than 1

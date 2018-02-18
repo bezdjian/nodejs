@@ -16,8 +16,8 @@ table tr th{
 	padding: 10px;
 }
 
-#userInfo{
-	width: 40%;
+#userInfo, #addUser{
+	width: 20%;
 	float: left;
 	background-color: aliceblue;
 	padding: 20px;
@@ -31,4 +31,6 @@ table tr th{
 #userList{
 	background-color: aliceblue;
 	padding: 20px;
+	float: right;
+	width: 70%;
 }

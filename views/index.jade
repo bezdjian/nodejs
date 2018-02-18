@@ -6,14 +6,50 @@ block content
 
   //Wrapper
   #wrapper
-  //User list
-  h2 User list
-  #userList
-    table
+
+    //User info
+    #userInfo
+     h2 User information
+     p
+      strong Name: 
+      | <span id='userInfoName'></span>
+      br
+      strong Last name: 
+      | <span id='userInfoLastName'></span>
+      br
+      strong Email: 
+      | <span id='userInfoEmail'></span>
+      br
+      strong Country:
+      | <span id='userInfoCountry'></span>
+    //EO: userinfo
+
+    //User list
+    #userList
+     h2 User list
+     table
       thead
         th First name
         th Last name
         th Email <i class='fa fa-user'></i>
       tbody
-  //EO: User list
+    //EO: User list
+
+    //Add user
+    #addUser
+     h2 Add a user
+      fieldset
+        input#inputFirstName(type='text', placeholder='Firstname')
+        br
+        input#inputLastName(type='text', placeholder='Lastname')
+        br
+        input#inputEmail(type='text', placeholder='Email')
+        br
+        input#inputCountry(type='text', placeholder='Country')
+        br
+        br
+        button#btnAddUser Add User
+    //EO: add user
+
+
   //EO: Wrapper

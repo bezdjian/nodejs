@@ -29,4 +29,16 @@ var db = req.db; // get the DB from req that we saved in app.json
 
 });
 
+// POST to users, ADD
+router.get('/adduser', function(req, res){
+	var db = req.db;
+	//db.query('INSERT INTO person (firstname, lastname, email, country) VALUES ()')
+	var collection = db.get('userList');
+	collection.insert(req.body, function(err, result){
+		res.send(
+				(err === null) ? {msg: ''} : {msg: err}
+			);
+	});
+});
+
 module.exports = router;

@@ -15,3 +15,20 @@ table tr th{
 	background-color: #ccc;
 	padding: 10px;
 }
+
+#userInfo{
+	width: 40%;
+	float: left;
+	background-color: aliceblue;
+	padding: 20px;
+	margin-right: 10px;
+}
+
+#userInfo strong{
+	margin-bottom: 5px;
+}
+
+#userList{
+	background-color: aliceblue;
+	padding: 20px;
+}

@@ -18,12 +18,14 @@ router.post('/adduser', function(req, res){
 	res.end(JSON.stringify({"success" : " '" +fullname+ "' inserted Successfully", "status" : 200}));
 });
 
-router.post('/removeuser', function(req, res){
-	var userID = req.body.id;
+router.get('/removeuser/', function(req, res){
+	var userID = req.query.userID;
+	console.log("REMOVE USER!!!!--------- " + userID);
 	person.removePerson(userID);
 	
 	//Send response with Json.
-	res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted"}));
+	//res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted"}));
+	res.redirect("/");
 });
 
 module.exports = router;

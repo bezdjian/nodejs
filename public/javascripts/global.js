@@ -10,8 +10,8 @@ $(document).ready(function(){
 	//Add user btn
 	$("#btnAddUser").on('click', addUser);
 
-	//Remove user btn
-	$("#userList table tbody").on('click', 'td a.linkdeleteuser', removeUser);
+	//Remove user btn, old way with ajax
+	//$("#userList table tbody").on('click', 'td a.linkdeleteuser', removeUser);
 });
 
 
@@ -27,7 +27,7 @@ function populateTable(){
 			tableContent += '<td><a href="#" class="linkshowuser" rel="'+this.firstname+'">'+this.firstname+'</a></td>';
 			tableContent += '<td>'+this.lastname+'</td>';
 			tableContent += '<td>'+this.email+'</td>';
-			tableContent += '<td><a href="#" class="linkdeleteuser" rel="'+this.id+'"><i class="fa fa-trash"></i></a></td>';
+			tableContent += '<td><a href="/users/removeuser/?userID='+this.id+'" class="linkdeleteuser" rel="'+this.id+'"><i class="fa fa-trash"></i></a></td>';
 			tableContent += '</tr>';
 		}); //End each
 
@@ -113,6 +113,7 @@ function addUser(event){
 	}
 }
 
+/* !!! NOT USING THIS OLD WAY 
 function removeUser(event){
 	event.preventDefault();
 
@@ -147,3 +148,4 @@ function removeUser(event){
 	});
 	
 }
+*/

@@ -22,18 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Mysql
-//Make the DB Connection here to save it globally in request.
-var mysql = require('mysql');
-
-var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "mylms"
-});
-
-// EO: Mysql
+//GET DB
+var db = require('./dbconnection');
 
 //Save mySql db connection in app globaly.
 app.use(function(req, res, next){
@@ -56,6 +46,8 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  //Debug
+  console.error("INTERNAL ERROR: " + err.message);
   // render the error page
   res.status(err.status || 500);
   res.render('error');

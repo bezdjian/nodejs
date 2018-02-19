@@ -11,23 +11,22 @@ $(document).ready(function(){
 	$("#btnAddUser").on('click', addUser);
 
 	//Remove user btn, old way with ajax
-	//$("#userList table tbody").on('click', 'td a.linkdeleteuser', removeUser);
+	///users/removeuser/?userID='+this.id+'
+	$("#userList table tbody").on('click', 'td a.linkdeleteuser', removeUser);
 });
 
 
 //Fill table with data
 function populateTable(){
 	var tableContent = "";
-
 	//Jquery ajax call for JSON
 	$.getJSON('/users/', function(data){
 		userListData = data; //save it globaly.
 		$.each(data, function(){
 			tableContent += '<tr>';
-			tableContent += '<td><a href="#" class="linkshowuser" rel="'+this.firstname+'">'+this.firstname+'</a></td>';
-			tableContent += '<td>'+this.lastname+'</td>';
+			tableContent += '<td><a href="#" class="linkshowuser" rel="'+this.firstname+'">'+this.firstname+ ' ' +this.lastname+ '</a></td>';
 			tableContent += '<td>'+this.email+'</td>';
-			tableContent += '<td><a href="/users/removeuser/?userID='+this.id+'" class="linkdeleteuser" rel="'+this.id+'"><i class="fa fa-trash"></i></a></td>';
+			tableContent += '<td><a href="#" class="linkdeleteuser" rel="'+this.id+'"><i class="fa fa-trash"></i></a></td>';
 			tableContent += '</tr>';
 		}); //End each
 
@@ -113,7 +112,7 @@ function addUser(event){
 	}
 }
 
-/* !!! NOT USING THIS OLD WAY 
+
 function removeUser(event){
 	event.preventDefault();
 
@@ -148,4 +147,3 @@ function removeUser(event){
 	});
 	
 }
-*/

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -33,4 +33,9 @@ table tr th{
 	padding: 20px;
 	float: right;
 	width: 70%;
+}
+
+#addUser input{
+	width: 97%;
+	margin: 5px 0;
 }

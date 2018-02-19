@@ -40,4 +40,14 @@ router.post('/adduser', function(req, res){
 	res.end(JSON.stringify({"success" : " '" +fullname+ "' inserted Successfully", "status" : 200}));
 });
 
+router.post('/removeuser', function(req, res){
+	var db = req.db;
+	var userID = req.body.id;
+
+	var sql = 'DELETE from person where id = ' + userID;
+	db.query(sql);
+	
+	res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted"}));
+});
+
 module.exports = router;

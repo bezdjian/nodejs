@@ -28,19 +28,16 @@ var db = req.db; // get the DB from req that we saved in app.json
 // POST to users, ADD
 router.post('/adduser', function(req, res){
 	var db = req.db;
-	console.info("RES: " + res);
+	var fullname = req.body.firstname + " " + req.body.lastname;
+	var username = req.body.firstname + "." + req.body.lastname;
 
-	for (var key in res) {
-		console.log(key + " -> " + res[key]);
-	}
-	
-	//db.query('INSERT INTO person (firstname, lastname, email, country) VALUES ()')
-	/*var collection = db.get('userList');
-	collection.insert(req.body, function(err, result){
-		res.send(
-				(err === null) ? {msg: ''} : {msg: err}
-			);
-	});*/
+	var sql = 'INSERT INTO person (accounttype, username, firstname, lastname, fullName, email, country) ' +
+	'VALUES ("personal", "'+username.toLocaleLowerCase()+'",  "'+req.body.firstname+'", "'+req.body.lastname+'", "'+fullname+'", "'+req.body.email+'", "'+req.body.country+'" )';
+
+	console.info('SQL in /adduser: ' + sql);
+	db.query(sql);	
+
+	res.end(JSON.stringify({"success" : " '" +fullname+ "' inserted Successfully", "status" : 200}));
 });
 
 module.exports = router;

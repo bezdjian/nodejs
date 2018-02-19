@@ -69,32 +69,38 @@ function addUser(event){
 
 	//Check if errorCount is still zero
 	if(errorCount === 0){
-		var newUser = {
-			'firstname': $("#addUser fieldset input#inputFirstName").val(),
-			'lastname': $("#addUser fieldset input#inputLastName").val(),
-			'email': $("#addUser fieldset input#inputEmail").val(),
-			'country': $("#addUser fieldset input#inputCountry").val(),
-		}
+
+		//Create an object
+		var newUser = JSON.stringify({
+			"firstname": $("#addUser fieldset input#inputFirstName").val(),
+			"lastname": $("#addUser fieldset input#inputLastName").val(),
+			"email": $("#addUser fieldset input#inputEmail").val(),
+			"country": $("#addUser fieldset input#inputCountry").val(),
+		});
+		var parsedJson = JSON.parse(newUser);
 
 		//Use ajax to post the new user
 		$.ajax({
 			type: 'POST',
-			data: newUser,
+			data: parsedJson,
 			url: '/users/adduser',
-			dataType: 'JSON'
-		}).done(function(response){
-			//Check if successful (blank) response
-			if(response.msg === ''){
-				//Clear form inputs
-				$("#addUser fieldset input").val('');
-				//Update the table
-				populateTable();
-			}else{
-				//display error
-				alert("ERROR from posting new user: " + response.msg);
+			dataType: 'json',
+			success: function(response){
+				//Check if successful (blank) response
+				console.log("DONE: " + response.success);
+				if(response.success !== ''){
+					//Clear form inputs
+					$("#addUser fieldset input").val('');
+					//Update the table
+					populateTable();
+				}else{
+					//display error
+					alert("ERROR from posting new user: " + response.msg);
+				}
+			},
+			error: function(xhr, res, panme){
+				console.log("ERROR in global l-102: " + xhr.responseText);
 			}
-		}).fail(function(res){
-			console.error("FAIL: " + res.responseText)
 		});
 	}else{
 		//if errorCount more than 1

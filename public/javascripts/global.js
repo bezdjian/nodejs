@@ -79,6 +79,7 @@ function addUser(event){
 			"lastname": $("#addUser fieldset input#inputLastName").val(),
 			"email": $("#addUser fieldset input#inputEmail").val(),
 			"country": $("#addUser fieldset input#inputCountry").val(),
+			"fullname": $("#addUser fieldset input#inputFirstName").val() + ' ' + $("#addUser fieldset input#inputLastName").val(),
 		});
 		var parsedJson = JSON.parse(newUser);
 
@@ -117,7 +118,6 @@ function removeUser(event){
 	event.preventDefault();
 
 	var userID = $(this).attr('rel');
-	console.log("USERID to be deleted: " + userID);
 
 	var removingUser = JSON.stringify({
 		"id": userID

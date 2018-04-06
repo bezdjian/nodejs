@@ -14,17 +14,21 @@ router.get('/', function(req, res, next) {
 router.post('/adduser', function(req, res){
 	var p = person.insertPerson(req.body);
 
+	str = JSON.stringify(req.body);
+	str = JSON.parse(str);
+
 	//Send response with Json.
-	res.end(JSON.stringify({"success" : " '" +p.fullname+ "' inserted Successfully", "status" : 200}));
+    res.type('json');
+	res.end(JSON.stringify({"success" : str.fullname + " inserted Successfully", "status" : 200}));
 });
 
 router.post('/removeuser/', function(req, res){
 	var userID = req.body.id;
-	console.log("REMOVE USER!!!!--------- " + userID);
 	person.removePerson(userID);
 	
 	//Send response with Json.
-	res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted"}));
+    res.type('json');
+	res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted", "status" : 200}));
 	//res.redirect("/");
 });
 

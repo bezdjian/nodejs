@@ -12,10 +12,10 @@ router.get('/', function(req, res, next) {
 
 // POST to users, ADD
 router.post('/adduser', function(req, res){
-	person.insertPerson(req.body);
+	var p = person.insertPerson(req.body);
 
 	//Send response with Json.
-	res.end(JSON.stringify({"success" : " '" +fullname+ "' inserted Successfully", "status" : 200}));
+	res.end(JSON.stringify({"success" : " '" +p.fullname+ "' inserted Successfully", "status" : 200}));
 });
 
 router.post('/removeuser/', function(req, res){

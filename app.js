@@ -1,3 +1,5 @@
+#!/usr/bin/env nodejs
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -22,18 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Mysql
-//Make the DB Connection here to save it globally in request.
-var mysql = require('mysql');
-
-var db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "mylms"
-});
-
-// EO: Mysql
+//GET DB
+var db = require('./dbconnection');
 
 //Save mySql db connection in app globaly.
 app.use(function(req, res, next){
@@ -56,9 +48,20 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  //Debug
+  console.error("INTERNAL ERROR: " + err.message);
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
 
 module.exports = app;
+
+/*
+var http = require('http');
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World\n');
+}).listen(8088, 'localhost');
+console.log('Server running at http://localhost:8088/');
+*/

@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -20,7 +20,7 @@ table tr th{
 	width: 20%;
 	float: left;
 	background-color: aliceblue;
-	padding: 20px;
+	padding: 18px;
 	margin-right: 10px;
 }
 
@@ -33,4 +33,19 @@ table tr th{
 	padding: 20px;
 	float: right;
 	width: 70%;
+	min-height: 500px;
+	height: 100%;
+}
+
+#userList table{
+	width: 100%;
+}
+
+#addUser input{
+	width: 97%;
+	margin: 5px 0;
+}
+
+.fa{
+	padding: 15px 5px 0;
 }

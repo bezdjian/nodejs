@@ -1,53 +1,35 @@
 var express = require('express');
 var router = express.Router();
+var person = require('../models/person');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 
-var db = req.db; // get the DB from req that we saved in app.json
-
-	db.connect(function(err){
-	  //if(err) throw err;
-	  console.log('Connected! - Querying...');
-	  
-	  db.query('SELECT * from person', function(err, rows, fields){
-	  	if(err) throw err;
-	  	/*
-	  	display = "";
-	  	rows.forEach(function(row) {
-	    	display += row.firstname + ", " + row.lastname + ", " + row.email;
-	    });
-	    //res.send("Result: " + display);
-	    */
-	  	res.json(rows);
-	  });
+	person.getAllPersons(function(err, rows){
+		res.json(rows);
 	});
-	//res.send('Default send: respond with a resource');
 });
 
 // POST to users, ADD
 router.post('/adduser', function(req, res){
-	var db = req.db;
-	console.info("REQ body: " + req.param('name'));
-	var name = req.param('name');
+	var p = person.insertPerson(req.body);
 
-	db.query('INSERT INTO person (firstname, lastname, email, country ) VALUES ("'+ name+'", "LASTNAME", "EMAIL@MAIL.com", "SWEDEN")', function (err, rows, fields) {
-        if(err) throw err;
-		/*
-		 display = "";
-		 rows.forEach(function(row) {
-		 display += row.firstname + ", " + row.lastname + ", " + row.email;
-		 });
-		 //res.send("Result: " + display);
-		 */
-        res.json(rows);
-    });
-	/*var collection = db.get('userList');
-	collection.insert(req.body, function(err, result){
-		res.send(
-				(err === null) ? {msg: ''} : {msg: err}
-			);
-	});*/
+	str = JSON.stringify(req.body);
+	str = JSON.parse(str);
+
+	//Send response with Json.
+    res.type('json');
+	res.end(JSON.stringify({"success" : str.fullname + " inserted Successfully", "status" : 200}));
+});
+
+router.post('/removeuser/', function(req, res){
+	var userID = req.body.id;
+	person.removePerson(userID);
+
+	//Send response with Json.
+    res.type('json');
+	res.end(JSON.stringify({"success" : "User with ID '"+userID+"' has successfully deleted", "status" : 200}));
+	//res.redirect("/");
 });
 
 module.exports = router;

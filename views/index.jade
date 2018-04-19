@@ -29,22 +29,26 @@ block content
      h2 User list
      table
       thead
-        th First name
-        th Last name
-        th Email <i class='fa fa-user'></i>
+        th Name <i class="fa fa-user" aria-hidden="true"></i>
+        th Email <i class="fa fa-envelope" aria-hidden="true"></i>
+        th Delete <i class="fa fa-trash" aria-hidden="true"></i>
       tbody
     //EO: User list
 
     //Add user
     #addUser
      h2 Add a user
-      fieldset
+     fieldset
+        <i class="fa fa-user" aria-hidden="true"></i>
         input#inputFirstName(type='text', placeholder='Firstname')
         br
+        <i class="fa fa-user" aria-hidden="true"></i>
         input#inputLastName(type='text', placeholder='Lastname')
         br
+        <i class="fa fa-envelope" aria-hidden="true"></i>
         input#inputEmail(type='text', placeholder='Email')
         br
+        <i class="fa fa-globe" aria-hidden="true"></i>
         input#inputCountry(type='text', placeholder='Country')
         br
         br
